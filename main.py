@@ -15,6 +15,8 @@ def main() -> QuerySet:
             "Dramma",
         )
     ]
+    if Genre.objects.count() != 0:
+        Genre.objects.all().delete()
     Genre.objects.bulk_create(genress)
 
     actors = [
@@ -22,12 +24,14 @@ def main() -> QuerySet:
         for first_name, last_name in [
             ("George", "Klooney"),
             ("Kianu", "Reaves"),
-            ("Scarlet", "Keegan"),
+            ("Scarlett", "Keegan"),
             ("Will", "Smith"),
             ("Jaden", "Smith"),
-            ("Scarlet", "Johansson"),
+            ("Scarlett", "Johansson"),
         ]
     ]
+    if Actor.objects.count() != 0:
+        Actor.objects.all().delete()
     Actor.objects.bulk_create(actors)
 
     Genre.objects.filter(name="Dramma").update(name="Drama")
@@ -37,10 +41,6 @@ def main() -> QuerySet:
     )
 
     Genre.objects.filter(name="Action").delete()
-    Actor.objects.filter(first_name="Scarlet").delete()
+    Actor.objects.filter(first_name="Scarlett").delete()
 
     return Actor.objects.filter(last_name="Smith").order_by("first_name")
-
-
-if __name__ == "__main__":
-    main()
