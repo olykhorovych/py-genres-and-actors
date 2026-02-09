@@ -15,9 +15,8 @@ def main() -> QuerySet:
             "Dramma",
         )
     ]
-
-    if not Genre.objects.exists():
-        Genre.objects.bulk_create(genress)
+    
+    Genre.objects.bulk_create(genress)
 
     actors = [
         Actor(first_name=first_name, last_name=last_name)
@@ -30,8 +29,7 @@ def main() -> QuerySet:
             ("Scarlet", "Johansson"),
         ]
     ]
-    if not Actor.objects.exists():
-        Actor.objects.bulk_create(actors)
+    Actor.objects.bulk_create(actors)
 
     Genre.objects.filter(name="Dramma").update(name="Drama")
     Actor.objects.filter(last_name="Klooney").update(last_name="Clooney")
