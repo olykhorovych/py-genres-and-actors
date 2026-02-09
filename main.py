@@ -15,7 +15,6 @@ def main() -> QuerySet:
             "Dramma",
         )
     ]
-    
     Genre.objects.bulk_create(genress)
 
     actors = [
